@@ -305,8 +305,10 @@ search.addEventListener('click', async event => {
   }
 
   searching = true;
-
-  const user = await get(`api.roblox.com/users/${/^\d+$/.test(input.value) ? input.value : `get-by-username?username=${input.value}`}`);
+  const userNames = []
+  userNames.push(input.value)
+  
+  const user = await post(`users.roblox.com/users/${/^\d+$/.test(input.value) ? input.value : `get-by-username?username=${input.value}`}`, 
 
   if (user.errors || user.errorMessage) {
     icon.src = USER.ERROR;

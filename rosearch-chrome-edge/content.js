@@ -143,7 +143,7 @@ async function findTarget(imageUrl, place) {
       thumbnailsData.forEach((thumbnailData) => {
         const thumbnails = allThumbnails.get(thumbnailData.requestId) || [];
 
-        if (thumbnails.length == 0) {
+        if (thumbnails.length === 0) {
           allThumbnails.set(thumbnailData.requestId, thumbnails);
         }
 
@@ -158,7 +158,7 @@ async function findTarget(imageUrl, place) {
         const foundTarget = thumbnailData.imageUrl === imageUrl ? thumbnailData.requestId : null;
 
         if (foundTarget) {
-          renderServers();
+          renderServers(place);
 
           targetServersId.push(foundTarget);
           searchingTarget = false;
@@ -175,7 +175,7 @@ async function findTarget(imageUrl, place) {
 
       const first = document.querySelectorAll('.rbx-game-server-item')[0] || document.querySelectorAll('#rbx-running-games > div.section-content-off.empty-game-instances-container > p')[0];
 
-      if (first.className == 'no-servers-message') {
+      if (first.className === 'no-servers-message') {
         first.parentNode.style['display'] = 'flex';
         first.parentNode.style['flex-direction'] = 'column';
       }
@@ -226,7 +226,7 @@ async function findTarget(imageUrl, place) {
   search.src = getURL('images/search.png');
 }
 
-function renderServers() {
+function renderServers(place) {
   highlighted.forEach((item) => {
     item.remove();
   });
@@ -271,7 +271,7 @@ function renderServers() {
     join.onclick = () => chrome.runtime.sendMessage({ message: { place, id: targetServerId } });
     status.innerText = 'Found player';
   });
-};
+}
 
 async function find(imageUrl, place) {
   allPlayers = [];
@@ -313,18 +313,18 @@ search.addEventListener('click', async event => {
 
   let user = null;
   if (/^\d+$/.test(input.value)) {
-	  user = await get(`users.roblox.com/v1/users/${input.value}`);
+    user = await get(`users.roblox.com/v1/users/${input.value}`);
   } else {
-	  const userNames = {
-		usernames: [
-		  input.value
-		]
-	  }
-	  let usersData = await post(`users.roblox.com/v1/usernames/users`, JSON.stringify(userNames));
-	  user = usersData.data[0]
-      if (!user) {
-        user = {errors: true};
-      }
+    const userNames = {
+      usernames: [
+        input.value
+      ]
+    }
+    let usersData = await post(`users.roblox.com/v1/usernames/users`, JSON.stringify(userNames));
+    user = usersData.data[0]
+    if (!user) {
+      user = {errors: true};
+    }
   }
 
   if (user.errors || user.errorMessage) {

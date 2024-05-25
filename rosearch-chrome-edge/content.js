@@ -310,9 +310,22 @@ search.addEventListener('click', async event => {
       input.value
     ]
   }
-  
-  
-  const user = await post(`users.roblox.com/usernames/users`, JSON.stringify(userNames);
+
+  let user = null;
+  if (/^\d+$/.test(input.value)) {
+	  user = await get(`users.roblox.com/v1/users/${input.value}`);
+  } else {
+	  const userNames = {
+		usernames: [
+		  input.value
+		]
+	  }
+	  let usersData = await post(`users.roblox.com/v1/usernames/users`, JSON.stringify(userNames));
+	  user = usersData.data[0]
+      if (!user) {
+        user = {errors: true};
+      }
+  }
 
   if (user.errors || user.errorMessage) {
     icon.src = USER.ERROR;
@@ -322,7 +335,7 @@ search.addEventListener('click', async event => {
   }
 
   const [, place] = window.location.href.match(/games\/(\d+)\//);
-  const { data: [{ imageUrl }] } = await get(`thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${user.Id}&size=150x150&format=Png&isCircular=false`);
+  const { data: [{ imageUrl }] } = await get(`thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${user.id}&size=150x150&format=Png&isCircular=false`);
 
   highlighted.forEach((item) => {
     item.remove();

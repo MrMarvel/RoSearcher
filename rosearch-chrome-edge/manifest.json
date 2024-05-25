@@ -25,7 +25,7 @@
         "panel.html"
       ],
       "matches": [
-        "https://*.roblox.com/games/"
+        "https://*.roblox.com/*"
       ]
     }
   ]

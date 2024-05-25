@@ -20,17 +20,8 @@ align="center">
 </p>
 
 ---
-<p
-align="center">
-<a href="https://microsoftedge.microsoft.com/addons/detail/rosearcher/oobhokhnkgaabegegleakccliicjmelh"><img src="https://user-images.githubusercontent.com/585534/107280673-a5ece780-6a26-11eb-9cc7-9fa9f9f81180.png" alt="Get RoSearcher for Microsoft Edge"></a>
-<a
-href="https://addons.mozilla.org/en-US/firefox/addon/rosearcher/"><img
-src="https://user-images.githubusercontent.com/585534/107280546-7b9b2a00-6a26-11eb-8f9f-f95932f4bfec.png" alt="Get RoSearcher for Firefox"></a>
-<a
-href="https://chrome.google.com/webstore/detail/rosearcher/kogoeldkgknjbdajddjjfijggnpcffib"><img
-src="https://user-images.githubusercontent.com/585534/107280622-91a8ea80-6a26-11eb-8d07-77c548b28665.png" alt="Get RoSearcher for Chrome"></a>
-</p>
-
+THIS IS FORK
+MADE WORKING EXTENSION FOR NEW ROBLOX API
 ---
 ## FAQ
 
